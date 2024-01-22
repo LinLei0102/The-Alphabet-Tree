@@ -1,26 +1,25 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Alphabetree",
+	id: "Project2",
+	author: "FlareZ",
+	pointsName: "Letters",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	offlineLimit: 1,  // In hours
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
+	offlineLimit: 24,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1",
+	name: "Literally just a game.",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+		- Added the game.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -43,6 +42,12 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	gain = gain.div(player.points.max(10).log10().mul(gain.max(2).log2()))
+	if (hasUpgrade('a', 11)) gain = gain.times(2)
+	if (hasUpgrade('a', 12)) gain = gain.times(upgradeEffect('a', 12))
+	if (hasUpgrade('a', 21)) gain = gain.times(3)
+	if (hasUpgrade('b', 11)) gain = gain.times(upgradeEffect('b', 11))
+	if (hasUpgrade('b', 21)) gain = gain.mul(player.points.max(1).log10(player.points.max(1).log10()).add(1))
 	return gain
 }
 
