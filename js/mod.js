@@ -13,13 +13,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "Literally just a game.",
+	num: "0.2",
+	name: "Milestone Mayhem",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added the game.<br>`
+		- Added balancing milestones.<br>
+		- Changed/Added some more upgrades`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -46,8 +47,10 @@ function getPointGen() {
 	if (hasUpgrade('a', 11)) gain = gain.times(2)
 	if (hasUpgrade('a', 12)) gain = gain.times(upgradeEffect('a', 12))
 	if (hasUpgrade('a', 21)) gain = gain.times(3)
+	if (hasMilestone('a', 2)) gain = gain.times(player.points.max(1).log10().add(1))
 	if (hasUpgrade('b', 11)) gain = gain.times(upgradeEffect('b', 11))
-	if (hasUpgrade('b', 21)) gain = gain.mul(player.points.max(1).log10(player.points.max(1).log10()).add(1))
+	if (hasUpgrade('b', 22)) gain = gain.mul(player.points.max(1).log10(player.points.max(1).log10()).add(1))
+	if (hasUpgrade('c', 13)) gain = gain.mul(upgradeEffect('c', 13))
 	return gain
 }
 

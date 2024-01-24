@@ -9,7 +9,7 @@ addLayer("a", {
     color: "#440000",
     requires(){ 
         let requirement = new Decimal(3);
-        if (hasUpgrade('a', 13)) requirement = requirement.div(2)
+        if (hasUpgrade('a', 21)) requirement = requirement.div(2)
        return requirement},  // Can be a function that takes requirement increases into account
     resource: "A points", // Name of prestige currency
     baseResource: " points", // Name of resource prestige is based on
@@ -18,6 +18,10 @@ addLayer("a", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() {
         mult = new Decimal(1)
+        if (hasMilestone('a', 1)) mult = mult.mul(2) 
+        if (hasMilestone('b', 1)) mult = mult.mul(3)
+        if (hasMilestone('b', 2)) mult = mult.pow(1.25)
+        if (hasUpgrade('c', 12)) mult = mult.mul(player.points.max(1).log10().add(1))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -28,6 +32,24 @@ addLayer("a", {
         {key: "a", description: "A: Reset for A points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
+
+    milestones: {
+        1: {
+            requirementDescription: "10 A Points",
+            effectDescription: "A Points gain is doubled",
+            done() { return player.a.points.gte(10) }
+        },
+        2: {
+            requirementDescription: "50 A Points",
+            effectDescription: "Letters gain is boosted by Letters at a decreased rate",
+            done() { return player.a.points.gte(50) }
+        },
+        3: {
+            requirementDescription: "100 A Points",
+            effectDescription: "A Points reset nothing",
+            done() { return player.a.points.gte(100)} 
+        }
+    },
 
     upgrades: {
         11: {
@@ -64,6 +86,21 @@ addLayer("a", {
                 return effect
            }
         },   
+    },
+    resetsNothing: () => hasMilestone('a', 3),
+    doReset(resettingLayer) {
+        if (layers[resettingLayer].row <= this.row) return;
+      
+        let keep = [];
+        if (hasUpgrade('b', 23)) keep.push("upgrades");
+        if (hasMilestone('b', 4)) keep.push("milestones");
+      
+        layerDataReset(this.layer, keep);
+    },
+    passiveGeneration() {
+        let aGeneration = 0
+        if (hasMilestone('b', 3)) aGeneration = 0.1
+        return aGeneration
     }
 })
 
@@ -120,6 +157,7 @@ addLayer("b", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() {
         mult = new Decimal(1)
+        if (hasUpgrade("c", 11)) mult = mult.mul(player.a.points.max(1).log10().add(1))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -148,16 +186,56 @@ addLayer("b", {
             cost: new Decimal(3)
         },
         13: {
-            title: "A point Noob",
+            title: "A points are A-mazing",
+            description: "Keep A Point upgrades on reset",
+            cost: new Decimal(5)
+        },
+        21: {
+            title: "A point starter",
             description: "A points are also boosted by 'Point Starter'",
             cost: new Decimal(7),
         },
-        21: {
+        22: {
             title: "Points are also cool (I guess...)",
             description: "Points boost points at a decreased rate",
             cost: new Decimal(10)
+        },
+        23: {
+            title: "A Points are repetitive",
+            description: "A Point upgrades are kept on reset",
+            cost: new Decimal(15)
         }
-    }
+    },
+    milestones: {
+        1: {
+            requirementDescription: "1 B Point",
+            effectDescription: "A point gain is tripled",
+            done() {return player.b.points.gte(1)}
+        },
+        2: {
+            requirementDescription: "5 B Points",
+            effectDescription: "A Point Gain is put to the power of 1.25",
+            done() {return player.b.points.gte(5)}
+        },
+        3: {
+            requirementDescription: "25 B Points",
+            effectDescription: "Gain 10% of A Point Gain every second",
+            done() {return player.b.points.gte(25)}
+        },
+        4: {
+            requirementDescription: "75 B Points",
+            effectDescription: "Keep A Point's Milestones on reset",
+            done() {return player.b.points.gte(75)}
+        }
+    },
+    doReset(resettingLayer) {
+        if (layers[resettingLayer].row <= this.row) return;
+      
+        let keep = [];
+        if (hasUpgrade('c', 21)) keep.push("upgrades");
+      
+        layerDataReset(this.layer, keep);
+    },
 })
 
 addLayer("bases", {
@@ -222,6 +300,44 @@ addLayer("c", {
         {key: "c", description: "C: Reset for C points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     branches: ["b"],
+    upgrades: {
+        11: {
+            title: "B Point synergy",
+            description: "B points are boosted by A Points at a decreased rate",
+            cost: new Decimal(2)
+        },
+        12: {
+            title: "A Point synergy",
+            description: "A points are boosted by letters at a decreased rate",
+            cost: new Decimal(5)
+        },
+        13: {
+            title: "Point Novice",
+            description: "Letters are boosted by C Points",
+            cost: new Decimal(7),
+            effect(){
+                let upgradec3 = player.c.points.max(1).log10().add(1)
+                if (hasUpgrade("c", 22)) player.a.points.mul(upgradec3.div(1.75))
+                if (hasUpgrade("c", 31)) player.b.points.mul(upgradec3.div(1.5))
+                return upgradec3
+            }
+        },
+        21: {
+            title: "B points are also Repetitive",
+            description: "Keep B Point upgrades on reset",
+            cost: new Decimal(10)
+        },
+        22: {
+            title: "A Point Novice",
+            description: "A Points are also boosted by 'Point Novice' at a decreased rate",
+            cost: new Decimal(15)
+        },
+        23: {
+            title: "C Points synergy",
+            description: "C Points are boosted by Letters",
+            cost: new Decimal(25)
+        }
+    },
     layerShown(){return true},
 })
 
