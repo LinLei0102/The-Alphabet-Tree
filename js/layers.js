@@ -49,8 +49,8 @@ addLayer("a", {
         },
         3: {
             requirementDescription: "300 A Points",
-            effectDescription: "A Points reset nothing",
-            done() { return player.a.points.gte(100)} 
+            effectDescription: "Gain 10% of A Point Gain every second",
+            done() { return player.a.points.gte(300)} 
         }
     },
 
@@ -90,7 +90,7 @@ addLayer("a", {
            }
         },   
     },
-    resetsNothing: () => hasMilestone('a', 3),
+    resetsNothing: () => hasMilestone('b', 3),
     doReset(resettingLayer) {
         if (layers[resettingLayer].row <= this.row) return;
       
@@ -102,7 +102,7 @@ addLayer("a", {
     },
     passiveGeneration() {
         let aGeneration = 0
-        if (hasMilestone('b', 5)) aGeneration = 0.1
+        if (hasMilestone('a', 3)) aGeneration = 0.1
         return aGeneration
     }
 })
@@ -228,7 +228,7 @@ addLayer("b", {
         },
         3: {
             requirementDescription: "25 B Points",
-            effectDescription: "Gain 10% of A Point Gain every second",
+            effectDescription: "A Points Reset nothing",
             done() {return player.b.points.gte(25)}
         },
         4: {
