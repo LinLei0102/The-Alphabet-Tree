@@ -13,20 +13,21 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.2.1",
+	num: "1.2.3",
 	name: "When you find a bug nest:",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v1.2.1</h3><br>
+	<h3>v1.2.3</h3><br>
 		- Added more milestones.<br>
-		- Changed/Added some more upgrades
-		- Fixed A, R, and S node colors
-		- Bug Fixed Upgrade A3
-		- Changed Upgrade B3's Description
-		- Changed Milestone B4's requirement
-		- Made the Version Numbers more precise
-		- Made you read all of this.`
+		- Changed/Added some more upgrades<br>
+		- Fixed A, R, and S node colors<br>
+		- Bug Fixed Upgrade A3<br>
+		- Changed Upgrade B3's Description<br>
+		- Changed Milestone B4's requirement<br>
+		- Made the Version Numbers more precise<br>
+		- Spammed some more upgrades
+		- Made you read all of this.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
