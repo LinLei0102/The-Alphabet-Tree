@@ -27,7 +27,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Changed Milestone B4's requirement<br>
 		- Made the Version Numbers more precise<br>
 		- Spammed some more updates<br>
-		- Made you read all of this.<br>`
+		- Bug Fixed Milestone B5 <br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
