@@ -6,10 +6,10 @@ addLayer("a", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#440000",
+    color: "#880000",
     requires(){ 
         let requirement = new Decimal(3);
-        if (hasUpgrade('a', 21)) requirement = requirement.div(2)
+        if (hasUpgrade('a', 13)) requirement = requirement.div(2)
        return requirement},  // Can be a function that takes requirement increases into account
     resource: "A points", // Name of prestige currency
     baseResource: " points", // Name of resource prestige is based on
@@ -18,10 +18,13 @@ addLayer("a", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() {
         mult = new Decimal(1)
+        let powerage = 1.25
         if (hasMilestone('a', 1)) mult = mult.mul(2) 
         if (hasMilestone('b', 1)) mult = mult.mul(3)
-        if (hasMilestone('b', 2)) mult = mult.pow(1.25)
+        if (hasMilestone('b', 2)) mult = mult.pow(powerage)
+        if (hasUpgrade("b", 13)) powerage = 1.35
         if (hasUpgrade('c', 12)) mult = mult.mul(player.points.max(1).log10().add(1))
+        if (hasMilestone('c', 1)) mult = mult.mul(3)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -45,7 +48,7 @@ addLayer("a", {
             done() { return player.a.points.gte(50) }
         },
         3: {
-            requirementDescription: "100 A Points",
+            requirementDescription: "300 A Points",
             effectDescription: "A Points reset nothing",
             done() { return player.a.points.gte(100)} 
         }
@@ -93,7 +96,7 @@ addLayer("a", {
       
         let keep = [];
         if (hasUpgrade('b', 23)) keep.push("upgrades");
-        if (hasMilestone('b', 4)) keep.push("milestones");
+        if (hasMilestone('b', 5)) keep.push("milestones");
       
         layerDataReset(this.layer, keep);
     },
@@ -148,7 +151,9 @@ addLayer("b", {
     color: "#cc0000",
     requires(){ 
         let requirement = new Decimal(300);
-        if (hasUpgrade("b", 12)) requirement = requirement.div(2)
+        let BUPG2 = 2
+        if (hasUpgrade("b", 12)) requirement = requirement.div(BUPG2)
+        if (hasMilestone("b", 4)) BUPG2 = 2.5
        return requirement},  // Can be a function that takes requirement increases into account
     resource: "B points", // Name of prestige currency
     baseResource: "A points", // Name of resource prestige is based on
@@ -157,7 +162,11 @@ addLayer("b", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() {
         mult = new Decimal(1)
+        let powerage = 1.25
         if (hasUpgrade("c", 11)) mult = mult.mul(player.a.points.max(1).log10().add(1))
+        if (hasMilestone("c", 3)) mult = mult.pow(powerage)
+        if (hasUpgrade("c", 31)) powerage = 1.35
+        if (hasMilestone("c", 1)) mult = mult.mul(3)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -187,7 +196,7 @@ addLayer("b", {
         },
         13: {
             title: "A points are A-mazing",
-            description: "Keep A Point upgrades on reset",
+            description: "B Milestone 2 is boosted",
             cost: new Decimal(5)
         },
         21: {
@@ -223,7 +232,12 @@ addLayer("b", {
             done() {return player.b.points.gte(25)}
         },
         4: {
-            requirementDescription: "75 B Points",
+            requirementDescription: "35 B Points",
+            effectDescription: "B Upgrade 2 is boosted slightly",
+            done() {return player.b.points.gte(35)}
+        },
+        5: {
+            requirementDescription: "50 B Points",
             effectDescription: "Keep A Point's Milestones on reset",
             done() {return player.b.points.gte(75)}
         }
@@ -300,6 +314,23 @@ addLayer("c", {
         {key: "c", description: "C: Reset for C points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     branches: ["b"],
+    milestones: {
+        1: {
+            requirementDescription: "1 C Point",
+            effectDescription: "A Points and B Point gain is tripled",
+            done() {return player.c.points.gte(1)}
+        },
+        2: {
+            requirementDescription: "3 C Points",
+            effectDescription: "C Point gain is boosted based on itself",
+            done() {return player.c.points.gte(3)}
+        },
+        3: {
+            requirementDescription: "7 C Points",
+            effectDescription: "B Point gain is powered by 1.25",
+            done() {return player.c.points.gte(7)}
+        },
+    },
     upgrades: {
         11: {
             title: "B Point synergy",
@@ -318,7 +349,7 @@ addLayer("c", {
             effect(){
                 let upgradec3 = player.c.points.max(1).log10().add(1)
                 if (hasUpgrade("c", 22)) player.a.points.mul(upgradec3.div(1.75))
-                if (hasUpgrade("c", 31)) player.b.points.mul(upgradec3.div(1.5))
+                if (hasUpgrade("c", 33)) player.b.points.mul(upgradec3.div(1.5))
                 return upgradec3
             }
         },
@@ -336,6 +367,21 @@ addLayer("c", {
             title: "C Points synergy",
             description: "C Points are boosted by Letters",
             cost: new Decimal(25)
+        },
+        31: {
+            title: "B Points are B-eautiful",
+            description: "C Milestone 3 is boosted",
+            cost: new Decimal(75)
+        },
+        32: {
+            title: "C Points are cool too... I guess",
+            description: "C Milestone 2 is boosted",
+            cost: new Decimal(85)
+        },
+        33: {
+            title: "B Point Novice",
+            description: "B Points are also boosted by 'Point Novice' at a decreased rate",
+            cost: new Decimal(100)
         }
     },
     layerShown(){return true},
@@ -1226,7 +1272,7 @@ addLayer("r", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#111111",
+    color: "#333333",
     requires(){ 
         let requirement = new Decimal(50);
        return requirement},  // Can be a function that takes requirement increases into account
@@ -1258,7 +1304,7 @@ addLayer("s", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#440000",
+    color: "#880000",
     requires(){ 
         let requirement = new Decimal(50);
        return requirement},  // Can be a function that takes requirement increases into account
