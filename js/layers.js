@@ -131,7 +131,7 @@ addLayer("automation", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 1, // Row the layer is in on the tree (0 is the first row)
     displayRow: 0,
     hotkeys: [
         {key: "A", description: "Shift + A: Reset for Automation points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -276,7 +276,7 @@ addLayer("bases", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 2, // Row the layer is in on the tree (0 is the first row)
     displayRow: 1,
     hotkeys: [
         {key: "B", description: "Shift + B: Reset for Base points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -411,7 +411,7 @@ addLayer("challenges", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 3, // Row the layer is in on the tree (0 is the first row)
     displayRow: 2,
     hotkeys: [
         {key: "C", description: "Shift + C: finish the current Challenge", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -444,7 +444,7 @@ addLayer("clock", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 3, // Row the layer is in on the tree (0 is the first row)
     displayRow: 2,
     hotkeys: [
         {key: "ctrl+c", description: "CNTRL + C: Reset for Time Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -541,7 +541,7 @@ addLayer("empower", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 5, // Row the layer is in on the tree (0 is the first row)
     displayRow: 4,
     hotkeys: [
         {key: "E", description: "Shift + E: Reset for Empowering points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -606,7 +606,7 @@ addLayer("flux", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 6, // Row the layer is in on the tree (0 is the first row)
     displayRow: 5,
     hotkeys: [
         {key: "F", description: "Shift + F: Reset for Fluxuating points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -703,7 +703,7 @@ addLayer("hindrances", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 8, // Row the layer is in on the tree (0 is the first row)
     displayRow: 7,
     hotkeys: [
         {key: "H", description: "Shift + H: Reset for Hindrance points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -768,7 +768,7 @@ addLayer("inquiry", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 9, // Row the layer is in on the tree (0 is the first row)
     displayRow: 8,
     hotkeys: [
         {key: "I", description: "Shift + I: Reset for Inquiring points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -801,7 +801,7 @@ addLayer("irregulations", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 9, // Row the layer is in on the tree (0 is the first row)
     displayRow: 8,
     hotkeys: [
         {key: "ctrl+i", description: "Control + I: Reset for Irregulating points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -866,7 +866,7 @@ addLayer("juxtapositions", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 10, // Row the layer is in on the tree (0 is the first row)
     displayRow: 9,
     hotkeys: [
         {key: "J", description: "Shift + J: Reset for Juxtapositioning points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -995,7 +995,7 @@ addLayer("mastery", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 13, // Row the layer is in on the tree (0 is the first row)
     displayRow: 12,
     hotkeys: [
         {key: "M", description: "Shift + M: Reset for Mastery points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1060,7 +1060,7 @@ addLayer("nitrogen", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 14, // Row the layer is in on the tree (0 is the first row)
     displayRow: 13,
     hotkeys: [
         {key: "N", description: "Shift + N: Reset for Nitrogenated points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1093,7 +1093,7 @@ addLayer("negativity", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 14, // Row the layer is in on the tree (0 is the first row)
     displayRow: 13,
     hotkeys: [
         {key: "ctrl+n", description: "Control + N: Reset for Negative points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1190,7 +1190,7 @@ addLayer("printing", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 16, // Row the layer is in on the tree (0 is the first row)
     displayRow: 15,
     hotkeys: [
         {key: "P", description: "Shift + P: Reset for Printing points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1223,7 +1223,7 @@ addLayer("positivity", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 16, // Row the layer is in on the tree (0 is the first row)
     displayRow: 15,
     hotkeys: [
         {key: "ctrl+p", description: "Control + P: Reset for Positivity points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1352,7 +1352,7 @@ addLayer("science", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 19, // Row the layer is in on the tree (0 is the first row)
     displayRow: 18,
     hotkeys: [
         {key: "S", description: "Shift + S: Reset for Scientific points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1385,7 +1385,7 @@ addLayer("super-mastery", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 19, // Row the layer is in on the tree (0 is the first row)
     displayRow: 18,
     hotkeys: [
         {key: "ctrl+s", description: "Control + S: Reset for Super Mastery points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1450,7 +1450,7 @@ addLayer("timeline", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 20, // Row the layer is in on the tree (0 is the first row)
     displayRow: 19,
     hotkeys: [
         {key: "T", description: "Shift + T: Reset for Timeline points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -1547,7 +1547,7 @@ addLayer("visualise", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 26, // Row the layer is in on the tree (0 is the first row)
+    row: 22, // Row the layer is in on the tree (0 is the first row)
     displayRow: 21,
     hotkeys: [
         {key: "V", description: "Shift + V: Reset for Visualising points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
