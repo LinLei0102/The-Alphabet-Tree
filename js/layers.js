@@ -102,7 +102,7 @@ addLayer("a", {
     },
     passiveGeneration() {
         let aGeneration = 0
-        if (hasMilestone('b', 3)) aGeneration = 0.1
+        if (hasMilestone('b', 5)) aGeneration = 0.1
         return aGeneration
     }
 })
@@ -239,7 +239,7 @@ addLayer("b", {
         5: {
             requirementDescription: "50 B Points",
             effectDescription: "Keep A Point's Milestones on reset",
-            done() {return player.b.points.gte(75)}
+            done() {return player.b.points.gte(50)}
         }
     },
     doReset(resettingLayer) {

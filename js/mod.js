@@ -5,20 +5,20 @@ let modInfo = {
 	pointsName: "Letters",
 	modFiles: ["layers.js", "tree.js"],
 
-	discordName: "",
-	discordLink: "",
+	discordName: "FlareZ's Fire Trees",
+	discordLink: "https://discord.gg/TDhmQh4n",
 	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 24,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.2.4",
+	num: "1.2.5",
 	name: "When you find a bug nest:",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v1.2.4</h3><br>
+	<h3>v1.2.5</h3><br>
 		- Added more milestones.<br>
 		- Changed/Added some more upgrades<br>
 		- Fixed A, R, and S node colors<br>
